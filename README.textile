@@ -7,7 +7,7 @@ h2. Installing
 First, install the gem
 <pre><code>gem install freelancing-god-fakeweb-matcher --source http://gems.github.com</code></pre>
 
-Then, in your @spec/spec_helper.rb@ file, you'll need to require the library _after_ you have required "FakeWeb":http://fakeweb.rubyforge.org and "RSpec":http://rspec.info, to look something like this:
+Then, in your @spec/spec_helper.rb@ file, you'll need to require the library _after_ you have required "FakeWeb":http://fakeweb.rubyforge.org and "RSpec":http://rspec.info. It should end up looking something like this:
 
 <pre><code>require 'spec'
 require 'fakeweb'
