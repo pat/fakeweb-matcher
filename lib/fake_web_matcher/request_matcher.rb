@@ -7,11 +7,11 @@ module FakeWebMatcher
     
     # Create a new matcher.
     # 
-    # @param [Symbol] method The HTTP method
+    # @param [Symbol] method The HTTP method. Defaults to :any if not supplied.
     # @param [String] uri The URI to check for
     # 
-    def initialize(method, url)
-      @method, @url = method, url
+    def initialize(*args)
+      @method, @url = args_split(*args)
     end
     
     # Indication of whether there's a match on the URI from given requests.
