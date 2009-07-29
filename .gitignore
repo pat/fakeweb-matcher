@@ -3,3 +3,6 @@
 coverage
 rdoc
 pkg
+coverage
+doc
+.yardoc
