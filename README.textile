@@ -5,7 +5,7 @@ An RSpec matcher for the Fakeweb HTTP stubbing library, allowing you to use RSpe
 h2. Installing
 
 First, install the gem
-<pre><code>gem install freelancing-god-fakeweb-matcher --source http://gems.github.com</code></pre>
+<pre><code>gem install fakeweb-matcher --source http://gemcutter.org</code></pre>
 
 Then, in your @spec/spec_helper.rb@ file, you'll need to require the library _after_ you have required "FakeWeb":http://fakeweb.rubyforge.org and "RSpec":http://rspec.info. It should end up looking something like this:
 
