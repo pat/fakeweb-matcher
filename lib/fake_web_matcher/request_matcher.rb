@@ -8,7 +8,7 @@ module FakeWebMatcher
     # Create a new matcher.
     # 
     # @param [Symbol] method The HTTP method. Defaults to :any if not supplied.
-    # @param [String] uri The URI to check for
+    # @param [String] or [RegEx] uri The URI to check for
     # 
     def initialize(*args)
       @method, @url = args_split(*args)
@@ -23,7 +23,7 @@ module FakeWebMatcher
     def matches?(fakeweb)
       !FakeWeb::Registry.instance.requests.detect { |req|
         method, url = args_split(*req)
-        match_method(method) && url == @url
+        match_method(method) && match_url(url)
       }.nil?
     end
     
@@ -32,11 +32,7 @@ module FakeWebMatcher
     # @return [String] failure message
     # 
     def failure_message
-      if @method == :any
-        "The URL #{@url} was not requested."
-      else
-        "The URL #{@url} was not requested using #{formatted_method}."
-      end
+      regex?(@url) ? regex_failure_message : url_failure_message
     end
     
     # Failure message if the URI should not have been requested.
@@ -44,14 +40,30 @@ module FakeWebMatcher
     # @return [String] failure message
     #
     def negative_failure_message
-      if @method == :any
-        "The URL #{@url} was requested and should not have been."
-      else
-        "The URL #{@url} was requested using #{formatted_method} and should not have been."
-      end
+      regex?(@url) ? regex_negative_failure_message : url_negative_failure_message
     end
     
     private
+    
+    def regex_negative_failure_message
+      "A URL that matches #{@url.inspect} was requested#{failure_message_method} and should not have been."
+    end
+    
+    def url_negative_failure_message
+      "The URL #{@url} was requested#{failure_message_method} and should not have been."
+    end
+    
+    def regex_failure_message
+        "A URL that matches #{@url.inspect} was not requested#{failure_message_method}."
+    end
+    
+    def url_failure_message
+        "The URL #{@url} was not requested#{failure_message_method}."
+    end
+    
+    def failure_message_method
+      " using #{formatted_method}" unless @method == :any
+    end
     
     # Compares methods, or ignores if either side of the comparison is :any.
     # 
@@ -61,6 +73,17 @@ module FakeWebMatcher
     def match_method(method)
       @method == :any || method == :any || method == @method
     end
+    
+    # Compares the url either by match it agains a regular expression or 
+    # by simple comparison
+    # 
+    # @param [String] url the called URI
+    # @return [Boolean] true if exprexted URI and called URI match.
+    # 
+    def match_url(url)
+      regex?(@url) ? @url.match(url.to_s) : @url == url
+    end
+    
     
     # Expected method formatted to be an uppercase string. Example: :get becomes
     # "GET".
@@ -75,20 +98,24 @@ module FakeWebMatcher
     # string, is required, but the method is not (will default to :any).
     # 
     # @param [Array] args
-    # @return [Array] Two items: method and URI instance
+    # @return [Array] Two items: method and URI instance or regular expression
     # 
     def args_split(*args)
       method  = :any
       uri     = nil
       
       case args.length
-      when 1 then uri         = URI.parse(args[0])
-      when 2 then method, uri = args[0], URI.parse(args[1])
+      when 1 then uri         = args[0]
+      when 2 then method, uri = args[0], args[1]
       else
         raise ArgumentError.new("wrong number of arguments")
       end
-      
+      uri = URI.parse(uri) unless regex?(uri)
       return method, uri
+    end
+    
+    def regex?(object)
+      object.is_a?(Regexp)
     end
   end
 end

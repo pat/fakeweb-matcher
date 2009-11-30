@@ -19,6 +19,7 @@ h2. Usage
 
 <pre><code>FakeWeb.should have_requested(:get, 'http://example.com')
 FakeWeb.should have_requested(:any, 'http://example.com')
+FakeWeb.should have_requested(:post, /http:\/\/example.com\/)
 FakeWeb.should_not have_requested(:put, 'http://example.com')</code></pre>
 
 h2. Contribution

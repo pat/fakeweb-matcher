@@ -53,6 +53,19 @@ describe FakeWebMatcher::RequestMatcher do
       matcher = FakeWebMatcher::RequestMatcher.new(:post, 'http://domain.com')
       matcher.matches?(FakeWeb).should be_false
     end
+    
+    describe "matching url is regular expression" do
+      it "should return true if expression matches" do
+        matcher = FakeWebMatcher::RequestMatcher.new(:get, /example/)
+        matcher.matches?(FakeWeb).should be_true
+      end
+      
+      it "should return false if don't match" do
+        matcher = FakeWebMatcher::RequestMatcher.new(:get, /domain/)
+        matcher.matches?(FakeWeb).should be_false
+      end
+      
+    end
   end
   
   describe '#failure_message' do
@@ -66,6 +79,18 @@ describe FakeWebMatcher::RequestMatcher do
       matcher = FakeWebMatcher::RequestMatcher.new('http://example.com')
       matcher.failure_message.
         should == 'The URL http://example.com was not requested.'
+    end
+    
+    it "should mention failing match" do
+      matcher = FakeWebMatcher::RequestMatcher.new(/example.com/)
+      matcher.failure_message.
+          should == 'A URL that matches /example.com/ was not requested.'
+    end
+    
+    it "should mention failing match with method if set" do
+      matcher = FakeWebMatcher::RequestMatcher.new(:get, /example.com/)
+      matcher.failure_message.
+         should == 'A URL that matches /example.com/ was not requested using GET.'
     end
   end
   
@@ -81,5 +106,18 @@ describe FakeWebMatcher::RequestMatcher do
       matcher.negative_failure_message.
         should == 'The URL http://example.com was requested and should not have been.'
     end
+    
+    it "should mention unexpected match" do
+      matcher = FakeWebMatcher::RequestMatcher.new(/example.com/)
+      matcher.negative_failure_message.
+          should == 'A URL that matches /example.com/ was requested and should not have been.'
+    end
+    
+    it "should mention unexpected match with method if set" do
+      matcher = FakeWebMatcher::RequestMatcher.new(:get, /example.com/)
+      matcher.negative_failure_message.
+         should == 'A URL that matches /example.com/ was requested using GET and should not have been.'
+    end
+    
   end
 end
