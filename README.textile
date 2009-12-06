@@ -26,6 +26,10 @@ h2. Contribution
 
 Unsurprisingly, this library is tested using RSpec, and relies upon FakeWeb. It also uses "YARD":http://yard.soen.ca/ for documentation, so if you're submitting patches (which are most definitely welcome!) please use YARD syntax and have valid specs.
 
+h2. Contributors
+
+* "Thilo Utke":http://github.com/thilo (Regex URL matching)
+
 h2. Copyright
 
 Copyright (c) 2009 Pat Allan, released under an MIT Licence
