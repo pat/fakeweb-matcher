@@ -32,4 +32,11 @@ describe FakeWebMatcher::Matchers do
     
     FakeWeb.should_not have_requested(:get, 'http://example.com')
   end
+
+  it "should not care about the order of the query parameters" do
+    FakeWeb.register_uri(:get, URI.parse('http://example.com/page?foo=bar&baz=qux'), :body => 'foo')
+    open('http://example.com/page?baz=qux&foo=bar')
+
+    FakeWeb.should have_requested(:get, 'http://example.com/page?foo=bar&baz=qux')
+  end
 end

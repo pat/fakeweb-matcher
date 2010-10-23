@@ -2,6 +2,24 @@ module FakeWebMatcher
   # Matcher class, following RSpec's expectations. Used to confirm whether a
   # request has been made on a given method and URI.
   # 
+  
+  # Monkey patch to add a normalize! method to the URI::HTTP class.
+  # It doesn't currently sort the query params which means two URLs
+  # that are equivalent except for a different order of query params
+  # will be !=. This isn't how FakeWeb works, so we patch it here.
+  class ::URI::HTTP
+
+    # Normalize an HTTP URI so that query param order differences don't
+    # affect equality.
+    def normalize!
+      if query
+        query_array = self.query.split('&')
+        set_query(query_array.sort.join('&'))
+      end
+      super
+    end
+  end
+
   class RequestMatcher
     attr_reader :url, :method
     
@@ -81,9 +99,9 @@ module FakeWebMatcher
     # @return [Boolean] true if exprexted URI and called URI match.
     # 
     def match_url(url)
-      regex?(@url) ? @url.match(url.to_s) : @url == url
+      return @url.match(url.to_s) if regex?(@url)
+      @url == url
     end
-    
     
     # Expected method formatted to be an uppercase string. Example: :get becomes
     # "GET".
