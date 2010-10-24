@@ -29,6 +29,7 @@ Unsurprisingly, this library is tested using RSpec, and relies upon FakeWeb. It 
 h2. Contributors
 
 * "Thilo Utke":http://github.com/thilo (Regex URL matching)
+* "Wes Morgan":http://nerdyadventuresofwes.blogspot.com/ (Normalise query params)
 
 h2. Copyright
 
