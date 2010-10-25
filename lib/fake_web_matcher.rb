@@ -26,7 +26,7 @@ FakeWeb::Registry.class_eval do
   include FakeWebMatcher::Extension
 end
 
-rspec = defined?(Spec) && defined?(Spec::Runner) ? Spec::Runner : RSpec
+rspec = defined?(RSpec) ? RSpec : Spec::Runner
 rspec.configure { |config|
   # Adding the custom matcher to the default set
   config.include FakeWebMatcher::Matchers
@@ -35,4 +35,4 @@ rspec.configure { |config|
   config.before :each do
     FakeWeb::Registry.instance.clear_requests
   end
-}
+} if rspec.respond_to?(:configure)
