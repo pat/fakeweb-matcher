@@ -1,6 +1,3 @@
-require 'yard'
-require 'jeweler'
-
 desc 'Generate documentation'
 YARD::Rake::YardocTask.new
 
@@ -22,7 +19,4 @@ Jeweler::Tasks.new do |gem|
     'VERSION.yml'
   ]
   gem.test_files = FileList['spec/**/*.rb']
-  
-  gem.add_dependency 'fakeweb', '>= 1.2.5'
-  gem.add_dependency 'rspec',   '>= 1.2.0'
 end

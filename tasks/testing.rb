@@ -1,14 +1,11 @@
-require 'spec/rake/spectask'
+require 'rspec/core/rake_task'
 
-Spec::Rake::SpecTask.new(:spec) do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts << "-c"
+RSpec::Core::RakeTask.new do |t|
+  t.pattern = 'spec/**/*_spec.rb'
 end
 
-Spec::Rake::SpecTask.new(:rcov) do |t|
-  t.pattern = 'spec/**/*_spec.rb'
-  t.spec_opts << "-c"
-  
-  t.rcov_opts = ['--exclude', 'spec', '--exclude', 'gems']
+RSpec::Core::RakeTask.new do |t|
+  t.pattern   = 'spec/**/*_spec.rb'
   t.rcov      = true
+  t.rcov_opts = ['--exclude', 'spec', '--exclude', 'gems']
 end

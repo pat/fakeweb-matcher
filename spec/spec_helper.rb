@@ -1,11 +1,11 @@
 $:.unshift File.dirname(__FILE__) + '/../lib'
+$:.unshift File.dirname(__FILE__) + '/.'
 
 require 'rubygems'
+require 'bundler'
+ 
+Bundler.require :default, :development
+
 require 'open-uri'
-require 'spec'
 require 'fake_web'
 require 'fake_web_matcher'
-
-Spec::Runner.configure do |config|
-  #
-end
