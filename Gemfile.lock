@@ -9,6 +9,7 @@ GEM
       git (>= 1.2.5)
       rake
     rake (0.8.7)
+    rcov (0.9.8)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -26,5 +27,6 @@ DEPENDENCIES
   fakeweb (>= 1.2.5)
   jeweler (= 1.5.1)
   rake (= 0.8.7)
+  rcov (= 0.9.8)
   rspec (>= 1.2.0)
   yard (= 0.7.2)
