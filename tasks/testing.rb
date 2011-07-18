@@ -9,3 +9,6 @@ RSpec::Core::RakeTask.new do |t|
   t.rcov      = true
   t.rcov_opts = ['--exclude', 'spec', '--exclude', 'gems']
 end
+
+task :default => :test
+task :test    => :spec
