@@ -4,8 +4,7 @@ gem 'fakeweb', '>= 1.2.5'
 gem 'rspec',   '>= 1.2.0'
 
 group :development do
-  gem 'jeweler', '1.5.1'
+  gem 'jeweler', '1.7.0'
   gem 'rake',    '0.8.7'
-  gem 'rcov',    '0.9.8', :platform => [:mri, :jruby]
   gem 'yard',    '0.7.2'
 end
