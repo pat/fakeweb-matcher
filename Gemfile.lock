@@ -10,7 +10,7 @@ GEM
       rake
       rdoc
     json (1.8.1)
-    rake (0.8.7)
+    rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
     rspec (2.6.0)
@@ -29,6 +29,6 @@ PLATFORMS
 DEPENDENCIES
   fakeweb (>= 1.2.5)
   jeweler (= 1.7.0)
-  rake (= 0.8.7)
+  rake
   rspec (>= 1.2.0)
   yard (= 0.7.2)

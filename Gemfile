@@ -5,6 +5,6 @@ gem 'rspec',   '>= 1.2.0'
 
 group :development do
   gem 'jeweler', '1.7.0'
-  gem 'rake',    '0.8.7'
+  gem 'rake'
   gem 'yard',    '0.7.2'
 end
