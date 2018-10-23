@@ -41,20 +41,20 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rspec>, [">= 1.2.0"])
       s.add_development_dependency(%q<jeweler>, ["= 1.7.0"])
       s.add_development_dependency(%q<rake>, ["= 0.8.7"])
-      s.add_development_dependency(%q<yard>, ["= 0.7.2"])
+      s.add_development_dependency(%q<yard>, ["~> 0.9.11"])
     else
       s.add_dependency(%q<fakeweb>, [">= 1.2.5"])
       s.add_dependency(%q<rspec>, [">= 1.2.0"])
       s.add_dependency(%q<jeweler>, ["= 1.7.0"])
       s.add_dependency(%q<rake>, ["= 0.8.7"])
-      s.add_dependency(%q<yard>, ["= 0.7.2"])
+      s.add_dependency(%q<yard>, ["~> 0.9.11"])
     end
   else
     s.add_dependency(%q<fakeweb>, [">= 1.2.5"])
     s.add_dependency(%q<rspec>, [">= 1.2.0"])
     s.add_dependency(%q<jeweler>, ["= 1.7.0"])
     s.add_dependency(%q<rake>, ["= 0.8.7"])
-    s.add_dependency(%q<yard>, ["= 0.7.2"])
+    s.add_dependency(%q<yard>, ["~> 0.9.11"])
   end
 end
 
