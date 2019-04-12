@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "fakeweb-matcher"
-  spec.version       = "1.2.3"
+  spec.version       = "1.2.4"
   spec.authors       = ["Pat Allan"]
   spec.email         = ["pat@freelancing-gods.com"]
 
