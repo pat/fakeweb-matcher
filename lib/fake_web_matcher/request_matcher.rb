@@ -58,11 +58,19 @@ module FakeWebMatcher
       regex?(@url) ? regex_failure_message : url_failure_message
     end
 
-    # Failure message if the URI should not have been requested.
+    # Failure message if the URI should not have been requested. (Deprecated)
     #
     # @return [String] failure message
     #
     def negative_failure_message
+      regex?(@url) ? regex_negative_failure_message : url_negative_failure_message
+    end
+
+    # Failure message if the URI should not have been requested.
+    #
+    # @return [String] failure message
+    #
+    def failure_message_when_negated
       regex?(@url) ? regex_negative_failure_message : url_negative_failure_message
     end
 
