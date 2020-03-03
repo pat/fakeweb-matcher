@@ -1,9 +1,10 @@
 require 'rubygems'
 require 'bundler'
+require 'bundler/gem_tasks'
 
 Bundler.require :default, :development
 
-require_relative "./tasks/distribution"
-require_relative "./tasks/testing"
+desc 'Generate documentation'
+YARD::Rake::YardocTask.new
 
-task :default => :spec
+task :rdoc => :yardoc
